@@ -16,20 +16,26 @@
 
 }
 
-.restoran-wrapper {
+.restoran-wrapper, .restoran-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
     gap: 50px;
 }
 
-.restoran-list a {
+.restoran-list, .food-card {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    border: 1px solid black
 }
 
-.restoran-list a .image {
+.restoran-list, .food-card .image {
     width: 100%;
     height: 300px;
     background-position: center;
     background-size: cover;
+}
+
+
+.hide {
+    display: none;
 }
