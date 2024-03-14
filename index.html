@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TYPOY SCRIPT</title>
     <link rel="stylesheet" href="/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="js/canvas.js" defer></script>
     <script src="js/main.js" defer></script>
   </head>
   <body>
@@ -17,6 +19,7 @@
     </header>
     <main>
       <div class="container">
+        
         <div class="header">
           <h1 class="title">Главные ресторораны деревни!</h1>
         </div>
@@ -26,8 +29,20 @@
               <button class="backBtn">GO BACK</button>
               <ul class="restoran-container">
               </ul>
-
           </div>
+        </section>
+        <section class="basket-popup">
+            <ul class="basket-popup__container">
+              <li class="basket-item">
+                <span>
+                  <img src="./img/food-band/margarita.jpg" class="basket-img" alt="">
+                  <div>
+                    <canvas id="myChart"></canvas>
+                  </div>
+                </span>
+
+              </li>
+            </ul>
         </section>
       </div>
     </main>

@@ -3,6 +3,7 @@ const container = document.querySelector(".restoran-wrapper");
 const wrapper = document.querySelector(".restoran-container");
 const foodRes = document.querySelector(".food-res");
 
+// ПОЛУЧЕНИЕ ДАННЫХ
 const getData = async (URL) => {
   const res = await fetch(URL, {
     method: "GET",
@@ -14,6 +15,13 @@ const getData = async (URL) => {
   throw new Error("Ебать ты лох");
 };
 
+const init = async () => {
+  const resaurantsArr = await getData(restourantsURl);
+  resaurantsArr.map((x) => createRestoransCards(x));
+  createRestoransCards();
+};
+
+// РАЗМЕТКА БЛОКОВ
 const createRestoransCards = async ({
   name,
   stars,
@@ -32,12 +40,9 @@ const createRestoransCards = async ({
       </div>
       <div class="image" style="background-image: url('${image}')"></div>
     </li>
-
     `;
-
   container.insertAdjacentHTML("beforeend", card);
 };
-createRestoransCards();
 
 const createFoodCard = ({ name, price, description, image }) => {
   const foodCard = `
@@ -51,11 +56,11 @@ const createFoodCard = ({ name, price, description, image }) => {
       <div class="image" style="background-image: url('${image}')"></div>
     </li>
   `;
-
   container.classList.add("hide");
-
   wrapper.insertAdjacentHTML("beforeend", foodCard);
 };
+
+// ОТКРЫВАЕМ МАГАЗИН
 
 const openRes = async (e) => {
   const target = e.target;
@@ -65,26 +70,43 @@ const openRes = async (e) => {
     wrapper.innerHTML = "";
     restData.map((x) => createFoodCard(x));
     wrapper.classList.remove("hide");
+    hide();
   }
 };
-
-const init = async () => {
-  const resaurantsArr = await getData(restourantsURl);
-  resaurantsArr.map((x) => createRestoransCards(x));
-};
+function hide() {
+  wrapper.classList.remove("hide");
+}
 
 container.addEventListener("click", openRes);
+
+// ЗАКРЫВАЕМ МАГАЗИН
 
 const goBack = async (e) => {
   const card = e.target.closest(".backBtn");
   if (card) {
-    container.classList.remove("hide");
-    wrapper.classList.add("hide");  
+    show();
     wrapper.innerHTML = "";
   }
-
 };
 
 foodRes.addEventListener("click", goBack);
 
+function show() {
+  container.classList.remove("hide");
+  wrapper.classList.add("hide");
+}
+
+// ДОБАВЛЯЕМ В КОРЗИНУ
+foodRes.addEventListener('click', (e) => {
+  buyBtn = e.target.closest('.buy')
+  if (buyBtn) {
+
+  } 
+  console.log(buyBtn)
+})
+
+
+
 init();
+
+
